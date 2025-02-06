@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strata Title Separation Checklist</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: white;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .description {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #555;
+    }
+    .save-button {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .save-button:hover {
+      background-color: #218838;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    textarea {
+      width: 100%;
+      height: 60px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      resize: vertical;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      color: #777;
+    }
+    .footer a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Strata Title Separation Checklist</h1>
+    <p class="description">A step-by-step guide to separating your property from a strata title in South Australia.</p>
+    <button class="save-button" onclick="saveData()">Save</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Step</th>
+          <th>What</th>
+          <th>Why</th>
+          <th>How</th>
+          <th>Timing</th>
+          <th>Completed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Example Step -->
+        <tr>
+          <td>1</td>
+          <td>Review strata plan and bylaws</td>
+          <td>Understand shared responsibilities and restrictions</td>
+          <td>Obtain documents from Lands Titles Office or strata manager</td>
+          <td>Early Stage</td>
+          <td><input type="checkbox" id="step1"></td>
+        </tr>
+        <tr>
+          <td colspan="6">
+            <textarea id="notes1" placeholder="Add notes..."></textarea>
+          </td>
+        </tr>
+        <!-- Add more steps as needed -->
+      </tbody>
+    </table>
+
+    <div class="footer">
+      <p>Resources: 
+        <a href="https://www.sa.gov.au/topics/property/land-titles" target="_blank">Lands Titles Office</a> | 
+        <a href="https://www.mitchamcouncil.sa.gov.au/" target="_blank">Mitcham Council</a> | 
+        <a href="https://www.stratacommunity.org.au/sa" target="_blank">Strata Community Association (SA)</a>
+      </p>
+      <p>Disclaimer: Data is saved locally in your browser. Clearing browser cache will delete saved data.</p>
+    </div>
+  </div>
+
+  <script>
+    // Load saved data
+    function loadData() {
+      for (let i = 1; i <= 10; i++) { // Adjust based on the number of steps
+        if (localStorage.getItem(`step${i}`)) {
+          document.getElementById(`step${i}`).checked = true;
+        }
+        if (localStorage.getItem(`notes${i}`)) {
+          document.getElementById(`notes${i}`).value = localStorage.getItem(`notes${i}`);
+        }
+      }
+    }
+
+    // Save data
+    function saveData() {
+      for (let i = 1; i <= 10; i++) { // Adjust based on the number of steps
+        const step = document.getElementById(`step${i}`);
+        const notes = document.getElementById(`notes${i}`);
+        if (step.checked) {
+          localStorage.setItem(`step${i}`, true);
+        } else {
+          localStorage.removeItem(`step${i}`);
+        }
+        if (notes.value) {
+          localStorage.setItem(`notes${i}`, notes.value);
+        } else {
+          localStorage.removeItem(`notes${i}`);
+        }
+      }
+      alert('Data saved!');
+    }
+
+    // Load data on page load
+    window.onload = loadData;
+  </script>
+</body>
+</html>
