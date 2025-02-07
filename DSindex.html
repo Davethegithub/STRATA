@@ -1,6 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCoohpxb0IYIDYtCyDjO7m4AhS2mPaSqCo",
+    authDomain: "strata-title-separation.firebaseapp.com",
+    databaseURL: "https://strata-title-separation-default-rtdb.firebaseio.com",
+    projectId: "strata-title-separation",
+    storageBucket: "strata-title-separation.firebasestorage.app",
+    messagingSenderId: "1058012567321",
+    appId: "1:1058012567321:web:78bde43cd08c5d1db29788",
+    measurementId: "G-H5E3YLDCZE"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Strata Title Separation Checklist</title>
@@ -93,26 +120,121 @@
           <th>What</th>
           <th>Why</th>
           <th>How</th>
-          <th>Timing</th>
           <th>Completed</th>
         </tr>
       </thead>
       <tbody>
-        <!-- Example Step -->
+        <!-- Step 1 -->
         <tr>
           <td>1</td>
           <td>Review strata plan and bylaws</td>
           <td>Understand shared responsibilities and restrictions</td>
           <td>Obtain documents from Lands Titles Office or strata manager</td>
-          <td>Early Stage</td>
           <td><input type="checkbox" id="step1"></td>
         </tr>
         <tr>
-          <td colspan="6">
+          <td colspan="5">
             <textarea id="notes1" placeholder="Add notes..."></textarea>
           </td>
         </tr>
-        <!-- Add more steps as needed -->
+
+        <!-- Step 2 -->
+        <tr>
+          <td>2</td>
+          <td>Engage a licensed surveyor</td>
+          <td>Assess subdivision feasibility and prepare a new plan</td>
+          <td>Contact a surveyor to evaluate the property and draft a subdivision plan</td>
+          <td><input type="checkbox" id="step2"></td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <textarea id="notes2" placeholder="Add notes..."></textarea>
+          </td>
+        </tr>
+
+        <!-- Step 3 -->
+        <tr>
+          <td>3</td>
+          <td>Consult a town planner</td>
+          <td>Understand council requirements for subdivision</td>
+          <td>Discuss zoning, planning policies, and approval processes with a town planner</td>
+          <td><input type="checkbox" id="step3"></td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <textarea id="notes3" placeholder="Add notes..."></textarea>
+          </td>
+        </tr>
+
+        <!-- Step 4 -->
+        <tr>
+          <td>4</td>
+          <td>Engage a strata/conveyancing lawyer</td>
+          <td>Navigate legal processes and lodge applications</td>
+          <td>Work with a lawyer to draft documents, negotiate with other owners, and submit applications</td>
+          <td><input type="checkbox" id="step4"></td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <textarea id="notes4" placeholder="Add notes..."></textarea>
+          </td>
+        </tr>
+
+        <!-- Step 5 -->
+        <tr>
+          <td>5</td>
+          <td>Submit subdivision plan to council</td>
+          <td>Obtain planning approval for the subdivision</td>
+          <td>Lodge the subdivision plan with the local council for review and approval</td>
+          <td><input type="checkbox" id="step5"></td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <textarea id="notes5" placeholder="Add notes..."></textarea>
+          </td>
+        </tr>
+
+        <!-- Step 6 -->
+        <tr>
+          <td>6</td>
+          <td>Negotiate with other strata owners</td>
+          <td>Obtain consent to amend the strata plan</td>
+          <td>Discuss the proposal with other owners and seek unanimous or special resolution approval</td>
+          <td><input type="checkbox" id="step6"></td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <textarea id="notes6" placeholder="Add notes..."></textarea>
+          </td>
+        </tr>
+
+        <!-- Step 7 -->
+        <tr>
+          <td>7</td>
+          <td>Lodge documents with Lands Titles Office</td>
+          <td>Finalize the new title for your property</td>
+          <td>Submit the approved subdivision plan and legal documents to the Lands Titles Office</td>
+          <td><input type="checkbox" id="step7"></td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <textarea id="notes7" placeholder="Add notes..."></textarea>
+          </td>
+        </tr>
+
+        <!-- Step 8 -->
+        <tr>
+          <td>8</td>
+          <td>Update shared services and easements</td>
+          <td>Ensure proper management of sewage, stormwater, and other shared services</td>
+          <td>Work with an engineer to reconfigure services and formalize easements if necessary</td>
+          <td><input type="checkbox" id="step8"></td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <textarea id="notes8" placeholder="Add notes..."></textarea>
+          </td>
+        </tr>
       </tbody>
     </table>
 
@@ -129,7 +251,7 @@
   <script>
     // Load saved data
     function loadData() {
-      for (let i = 1; i <= 10; i++) { // Adjust based on the number of steps
+      for (let i = 1; i <= 8; i++) { // Adjust based on the number of steps
         if (localStorage.getItem(`step${i}`)) {
           document.getElementById(`step${i}`).checked = true;
         }
@@ -141,7 +263,7 @@
 
     // Save data
     function saveData() {
-      for (let i = 1; i <= 10; i++) { // Adjust based on the number of steps
+      for (let i = 1; i <= 8; i++) { // Adjust based on the number of steps
         const step = document.getElementById(`step${i}`);
         const notes = document.getElementById(`notes${i}`);
         if (step.checked) {
